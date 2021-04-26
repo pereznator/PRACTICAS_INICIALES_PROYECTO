@@ -24,7 +24,7 @@ class UsersController {
         if (respuesta.length === 1) {
             res.json({mensaje: 'Exito', usuario: respuesta[0]});
         } else {
-            res.status(404).json({mensaje: 'Error'});
+            res.json({mensaje: 'Error'});
         }
     }
 

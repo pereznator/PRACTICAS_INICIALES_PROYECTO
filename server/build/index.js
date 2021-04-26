@@ -11,6 +11,7 @@ const userRoutes_1 = require("./routes/userRoutes");
 const consolasRoutes_1 = __importDefault(require("./routes/consolasRoutes"));
 const bibliotecasRoutes_1 = __importDefault(require("./routes/bibliotecasRoutes"));
 const publicacionesRoutes_1 = __importDefault(require("./routes/publicacionesRoutes"));
+const comentariosRoutes_1 = __importDefault(require("./routes/comentariosRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -25,12 +26,12 @@ class Server {
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
-        this.app.use('/users', userRoutes_1.userRoutes.router);
+        this.app.use('/usuarios', userRoutes_1.userRoutes.router);
         this.app.use('/juegos', gamesRoutes_1.default);
         this.app.use('/consolas', consolasRoutes_1.default);
         this.app.use('/bibliotecas', bibliotecasRoutes_1.default);
         this.app.use('/publicaciones', publicacionesRoutes_1.default);
-        this.app.use('/comentarios', userRoutes_1.userRoutes.router);
+        this.app.use('/comentarios', comentariosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

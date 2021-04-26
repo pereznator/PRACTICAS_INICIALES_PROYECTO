@@ -1,5 +1,64 @@
-<div class="container">
-    <h1>Register</h1>
+<div class="container bg-light rounded-3" style="width: 70%; margin-left: auto; margin-right: auto; margin-top: 5%; padding: 5%;">
+    <h1 class="display-4">Registrarse</h1>
     <hr>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex mollitia facilis, tempora aperiam sequi cum, fugiat provident sunt maiores in quo suscipit non, temporibus dignissimos. Necessitatibus at ipsum corrupti nobis!</p>
+    <ng-container *ngIf="loadForm">
+        <form class="row g-3" [formGroup]="registerForm" (ngSubmit)="registrar()">
+            <div class="col-md-4">
+                <h5 class="form-label">Nombre</h5>
+                <input type="text" class="form-control" placeholder="nombre" formControlName="nombre" [ngClass]="{'is-invalid': nombreNoValido}">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="nombreNoValido">
+                    Nombre es obligatorio.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5 class="form-label">Apellido</h5>
+                <input type="text" class="form-control" placeholder="apellido" formControlName="apellido" [class.is-invalid]="apellidoNoValido">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="apellidoNoValido">
+                    Apellido es obligatorio.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5 class="form-label">Username</h5>
+                <input type="text" class="form-control" placeholder="username" formControlName="username" [class.is-invalid]="usernameNoValido">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="usernameNoValido">
+                    Username es obligatorio.
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <h5 class="form-label">Correo</h5>
+                <input type="email" class="form-control" placeholder="name@email.com" formControlName="correo" [class.is-invalid]="correoNoValido">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="correoNoValido">
+                    Correo es obligatorio.
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <h5 class="form-label">Biografia</h5>
+                <input type="text" class="form-control" placeholder="biografia" formControlName="biografia" [class.is-invalid]="biografiaNoValida">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="biografiaNoValida">
+                    Biografia es obligatoria.
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <h5 class="form-label">Fecha de Nacimiento</h5>
+                <input type="text" class="form-control" placeholder="yyyy/mm/dd" formControlName="fechaNacimiento" [class.is-invalid]="fechaNoValida">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="fechaNoValida">
+                    Fecha es obligatoria.
+                </div>
+            </div>
+            <div class="col-md-6 mt-4">
+                <h5 class="form-label">Contraseña</h5>
+                <input type="password" class="form-control" placeholder="contraseña" formControlName="password" [class.is-invalid]="passwordNoValido">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="passwordNoValido">
+                    Contraseña es obligatoria.
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-2 mt-5 text-center">
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <a routerLink="/auth/login" class="text-decoration-none"><small class="text-primary">¿Ya tienes cuenta?</small></a>
+                </div>
+            </div>
+        </form>
+    </ng-container>
 </div>

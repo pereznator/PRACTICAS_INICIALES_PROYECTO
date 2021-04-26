@@ -1,1 +1,3 @@
-<router-outlet></router-outlet>
+<app-header *ngIf="usuariosService.estaAutorizado()"></app-header>
+<router-outlet>
+</router-outlet>

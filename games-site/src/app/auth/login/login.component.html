@@ -1,5 +1,41 @@
-<div class="container">
-    <h1>Login</h1>
+<div class="container bg-light rounded-3" style="width: 60%; margin-left: auto; margin-right: auto; margin-top: 5%; padding: 5%;">
+    <h1 class="display-2">Login</h1>
     <hr>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex mollitia facilis, tempora aperiam sequi cum, fugiat provident sunt maiores in quo suscipit non, temporibus dignissimos. Necessitatibus at ipsum corrupti nobis!</p>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="row">
+            <div class="col-lg-3">
+                <h4>Username:</h4>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="username" formControlName="username" [class.is-invalid]="usernameNoValido">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="usernameNoValido">
+                    Username es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-lg-3">
+                <h4>Password:</h4>
+            </div>
+            <div class="col">
+                <input type="password" class="form-control" placeholder="password" formControlName="password" [class.is-invalid]="passwordNoValido">
+                <div class="invalid-feedback" class="invalid-feedback" *ngIf="passwordNoValido">
+                    Contraseña es obligatoria.
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-9">
+                <a routerLink="/auth/register" class="text-decoration-none mt-1">
+                    <small class="text-muted">¿No tiene cuenta todavía?</small>
+                </a>
+            </div>
+            <div class="col-3 d-grid text-center">
+                <button class="btn btn-primary " type="submit">Login</button>
+                <small class="mt-1">
+                    <a class="link-primary text-decoration-none">Forgot password?</a>
+                </small>
+            </div>
+        </div>
+    </form>
 </div>

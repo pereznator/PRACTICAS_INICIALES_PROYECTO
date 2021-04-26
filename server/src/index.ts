@@ -7,6 +7,7 @@ import { userRoutes } from './routes/userRoutes';
 import consolasRoutes from './routes/consolasRoutes';
 import bibliotecasRoutes from './routes/bibliotecasRoutes';
 import publicacionesRoutes from './routes/publicacionesRoutes';
+import comentariosRoutes  from './routes/comentariosRoutes';
 
 
 class Server {
@@ -28,12 +29,12 @@ class Server {
     }
 
     routes(): void {
-        this.app.use('/users', userRoutes.router);
+        this.app.use('/usuarios', userRoutes.router);
         this.app.use('/juegos', gamesRoutes);
         this.app.use('/consolas', consolasRoutes);
         this.app.use('/bibliotecas', bibliotecasRoutes);
         this.app.use('/publicaciones', publicacionesRoutes);
-        this.app.use('/comentarios', userRoutes.router);
+        this.app.use('/comentarios', comentariosRoutes);
     }
 
     start(): void {

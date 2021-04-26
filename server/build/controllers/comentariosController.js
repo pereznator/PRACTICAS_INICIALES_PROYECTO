@@ -13,15 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class UsersController {
-    createUser(req, res) {
+class ComentariosController {
+    createComentario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { username, correo } = req.body;
-            const usuarios = yield database_1.default.query('SELECT * FROM usuario WHERE username = ? or correo = ?', [username, correo]);
-            if (usuarios.length > 0) {
-                return res.json({ mensaje: 'Error', descripcion: 'Ya existe un usuario con ese username o correo' });
-            }
-            const respuesta = yield database_1.default.query('INSERT INTO usuario set ?', [req.body]);
+            const respuesta = yield database_1.default.query('INSERT INTO comentario SET ?', [req.body]);
             if (respuesta.affectedRows === 1) {
                 res.json({ mensaje: 'Exito' });
             }
@@ -30,17 +25,12 @@ class UsersController {
             }
         });
     }
-    login(req, res) {
+    getComentarios(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { username, password } = req.body;
-            const respuesta = yield database_1.default.query('SELECT * FROM usuario WHERE username = ? and password = ?', [username, password]);
-            if (respuesta.length === 1) {
-                res.json({ mensaje: 'Exito', usuario: respuesta[0] });
-            }
-            else {
-                res.json({ mensaje: 'Error' });
-            }
+            const { id } = req.params;
+            const comentarios = yield database_1.default.query('SELECT * FROM comentario WHERE id_publicacion = ?', [id]);
+            res.json({ mensaje: 'Exito', comentarios: comentarios });
         });
     }
 }
-exports.usersController = new UsersController();
+exports.comentariosController = new ComentariosController();
