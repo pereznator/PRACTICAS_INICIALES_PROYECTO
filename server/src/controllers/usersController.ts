@@ -28,6 +28,16 @@ class UsersController {
         }
     }
 
+    public async buscarUsuario(req: Request, res: Response): Promise<any> {
+        const { id } = req.params;
+        const respuesta = await pool.query('SELECT * FROM usuario WHERE id = ?', [id]);
+        if (respuesta.length === 1) {
+            res.json({mensaje: 'Exito', usuario: respuesta[0]});
+        } else {
+            res.status(404).json({mensaje: 'Error'});
+        }
+    }
+
 }
 
 export const usersController = new UsersController();

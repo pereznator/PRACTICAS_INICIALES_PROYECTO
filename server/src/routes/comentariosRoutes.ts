@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { usersController } from '../controllers/usersController';
+import { comentariosController } from '../controllers/comentariosController';
 
 class ComentariosRoutes {
     router: Router = Router();
@@ -8,8 +8,8 @@ class ComentariosRoutes {
     }
 
     config(): void {
-        this.router.post('/', usersController.createUser);
-        this.router.post('/:id', usersController.login);
+        this.router.post('/', comentariosController.createComentario);
+        this.router.post('/:id', comentariosController.getComentarios);
     }
 
 }

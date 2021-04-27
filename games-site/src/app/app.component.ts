@@ -7,5 +7,6 @@ import { UsuariosService } from './services/usuarios.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public usuariosService: UsuariosService) {}
+  constructor(public usuariosService: UsuariosService) {
+  }
 }

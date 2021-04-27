@@ -12,9 +12,9 @@ class GamesRoutes {
 
     config(): void {
         
-        this.router.post('/juegos', gamesController.createJuego);
-        this.router.get('/juegos', gamesController.getJuegos);
-        this.router.get('/juegos/:id', gamesController.getJuego);
+        this.router.post('/', gamesController.createJuego);
+        this.router.get('/', gamesController.getJuegos);
+        this.router.get('/:id', gamesController.getJuego);
         
     }
 

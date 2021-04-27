@@ -8,9 +8,9 @@ class ConsolasRoutes {
     }
 
     config(): void {
-        this.router.post('/consolas', consolasController.createConsola);
-        this.router.get('/consolas', consolasController.getConsolas);
-        this.router.get('/consolas/:id', consolasController.getConsola);
+        this.router.post('/', consolasController.createConsola);
+        this.router.get('/', consolasController.getConsolas);
+        this.router.get('/:id', consolasController.getConsola);
     }
 
 }

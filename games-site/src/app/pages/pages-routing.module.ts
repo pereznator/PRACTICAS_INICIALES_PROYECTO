@@ -16,6 +16,7 @@ const routes: Routes = [
     {path: 'juegos', component: JuegosComponent},
     {path: 'juegos/:id', component: JuegoComponent},
     {path: 'perfil', component: PerfilComponent},
+    {path: '', redirectTo: 'home'},
 ];
 
 @NgModule({

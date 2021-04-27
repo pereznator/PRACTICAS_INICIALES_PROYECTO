@@ -1,15 +1,38 @@
 import { Injectable } from '@angular/core';
 import { ServerService } from './server.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
-  usuario = null;
+  usuario: any;
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private serverService: ServerService) { }
+  constructor(private serverService: ServerService,
+              private router: Router) {
+    if (localStorage.getItem('idUsuario')) {
+      this.buscarUsuario(localStorage.getItem('idUsuario')).subscribe( resp => {
+        console.log(resp);
+        this.usuario = resp.usuario;
+        this.loggedIn.next(true);
+      }, err => {
+        console.log(err);
+        localStorage.setItem('idUsuario', '');
+      });
+    }else {
+      this.usuario = null;
+      this.loggedIn.next(false);
+      this.router.navigateByUrl('/auth/login');
+    }
+
+  }
+
+  getUsuario(): any {
+    return this.usuario;
+  }
 
   registrar(usuarioCuerpo: any): Observable<any> {
     return this.serverService.request('POST', 'usuarios/register', usuarioCuerpo);
@@ -17,6 +40,10 @@ export class UsuariosService {
 
   login(loginCuerpo: any): Observable<any> {
     return this.serverService.request('POST', 'usuarios/login', loginCuerpo);
+  }
+
+  buscarUsuario(usuarioId: string): Observable<any> {
+    return this.serverService.request('GET', `usuarios/${usuarioId}`);
   }
 
   guardarUsuario(usuario: any): void {
@@ -36,6 +63,11 @@ export class UsuariosService {
       return this.usuario.tipo === 'admin';
     }
     return false;
+  }
+
+  cerrarSesion(): void {
+    this.usuario = null;
+    localStorage.setItem('idUsuario', '');
   }
 
 }

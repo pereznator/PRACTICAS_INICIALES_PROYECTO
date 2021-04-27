@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const usersController_1 = require("../controllers/usersController");
+const comentariosController_1 = require("../controllers/comentariosController");
 class ComentariosRoutes {
     constructor() {
         this.router = express_1.Router();
         this.config();
     }
     config() {
-        this.router.post('/', usersController_1.usersController.createUser);
-        this.router.post('/:id', usersController_1.usersController.login);
+        this.router.post('/', comentariosController_1.comentariosController.createComentario);
+        this.router.post('/:id', comentariosController_1.comentariosController.getComentarios);
     }
 }
 const comentariosRoutes = new ComentariosRoutes();

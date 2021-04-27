@@ -14,7 +14,7 @@ export class ServerService {
     if (metodo === 'POST') {
       return this.http.post(requestUrl, cuerpo);
     }else if (metodo === 'GET') {
-      return this.http.post(requestUrl, {});
+      return this.http.get(requestUrl, {});
     }
   }
 

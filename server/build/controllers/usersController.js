@@ -42,5 +42,17 @@ class UsersController {
             }
         });
     }
+    buscarUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const respuesta = yield database_1.default.query('SELECT * FROM usuario WHERE id = ?', [id]);
+            if (respuesta.length === 1) {
+                res.json({ mensaje: 'Exito', usuario: respuesta[0] });
+            }
+            else {
+                res.status(404).json({ mensaje: 'Error' });
+            }
+        });
+    }
 }
 exports.usersController = new UsersController();

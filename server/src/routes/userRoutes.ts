@@ -10,6 +10,7 @@ class UserRoutes {
     config(): void {
         this.router.post('/register', usersController.createUser);
         this.router.post('/login', usersController.login);
+        this.router.get('/:id', usersController.buscarUsuario);
     }
 
 }

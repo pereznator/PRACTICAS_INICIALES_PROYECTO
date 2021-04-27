@@ -24,7 +24,7 @@ CREATE TABLE juego (
 	id_juego int(11) not null auto_increment primary key,
     nombre varchar(45) not null unique,
     descripcion varchar(45) not null,
-    imagen varchar(45) not null,
+    imagen varchar(300) not null,
     fecha date not null,
     id_consola int(11) not null,
     foreign key (id_consola) references consola(id_consola)

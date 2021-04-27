@@ -1,0 +1,55 @@
+<div class="container mt-3">
+    <h1 class="fw-light">Nuevo Juego</h1>
+    <hr>
+    <ng-container *ngIf="!creandoFormulario">
+        <form [formGroup]="juegoForm" class="mx-auto" (ngSubmit)="crearJuego()">
+            <div class="row my-3">
+                <div class="col-md-2">
+                    <label class="text-muted my-2">Nombre: </label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Nombre del Juego" formControlName="nombre">
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-2">
+                    <label class="text-muted my-2">Descripcion: </label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Descripcion del Juego" formControlName="descripcion">
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-2">
+                    <label class="text-muted my-2">Ruta de imagen: </label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Ruta de la imagen" formControlName="rutaImagen">
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-2">
+                    <label class="text-muted my-2">Fecha de Lanzamiento: </label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="yyyy/mm/dd" formControlName="fechaLanzamiento">
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-2">
+                    <label class="text-muted my-2">Consola: </label>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select" formControlName="consola">
+                        <option value="false" selected>Elegir Consola</option>
+                        <option *ngFor="let consola of consolas" [value]="consola.id_consola">{{consola.nombre}}</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Juego</button>
+            <div class="alert alert-success my-3" *ngIf="juegoCreado">
+                <p>Se ha creado el juego con exito!</p>
+            </div>
+        </form>
+    </ng-container>
+</div>

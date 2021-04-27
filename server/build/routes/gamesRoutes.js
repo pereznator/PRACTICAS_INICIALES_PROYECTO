@@ -8,9 +8,9 @@ class GamesRoutes {
         this.config();
     }
     config() {
-        this.router.post('/juegos', gamesController_1.gamesController.createJuego);
-        this.router.get('/juegos', gamesController_1.gamesController.getJuegos);
-        this.router.get('/juegos/:id', gamesController_1.gamesController.getJuego);
+        this.router.post('/', gamesController_1.gamesController.createJuego);
+        this.router.get('/', gamesController_1.gamesController.getJuegos);
+        this.router.get('/:id', gamesController_1.gamesController.getJuego);
     }
 }
 const gamesRoutes = new GamesRoutes();
