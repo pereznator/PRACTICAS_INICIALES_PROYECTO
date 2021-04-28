@@ -1,0 +1,54 @@
+<div class="mt-3">
+    <section class="py-3 text-center container">
+        <div class="row py-lg-3">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Bienvenido {{usuario.username}}</h1>
+                <p class="lead text-muted">¿Que desea administrar hoy?</p>
+            </div>
+        </div>
+    </section>
+    <div class="container my-5">
+        <div class="row align-items-md-stretch my-3">
+            <div class="col-md-6">
+                <div class="h-100 p-5 text-white bg-dark rounded-3">
+                    <h2>Agregar Nueva Consola</h2>
+                    <button class="btn btn-outline-light" type="button" routerLink="/admin/nueva-consola">Agregar Consola</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>Agregar Nuevo Juego</h2>
+                    <button class="btn btn-outline-secondary" type="button" routerLink="/admin/nuevo-juego">Agregar Juegos</button>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-md-stretch my-3">
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>Ver Lista de Juegos</h2>
+                    <button class="btn btn-outline-secondary" type="button" routerLink="/admin/juegos">Ver Lista</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 text-white bg-dark rounded-3">
+                    <h2>Agregar Nuevo Usuario</h2>
+                    <button class="btn btn-outline-light" type="button" routerLink="/admin/nuevo-usuario">Agregar Usuario</button>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-md-stretch my-3">
+            <div class="col-md-6">
+                <div class="h-100 p-5 text-white bg-dark rounded-3">
+                    <h2>Ver Lista de Usuarios</h2>
+                    <button class="btn btn-outline-light" type="button" routerLink="/admin/usuarios">Ver Lista</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>Ver Reportes</h2>
+                    <button class="btn btn-outline-secondary" type="button" routerLink="/admin/reportes">Ver Reportes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

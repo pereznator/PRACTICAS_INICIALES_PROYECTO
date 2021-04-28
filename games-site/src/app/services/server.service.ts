@@ -15,6 +15,10 @@ export class ServerService {
       return this.http.post(requestUrl, cuerpo);
     }else if (metodo === 'GET') {
       return this.http.get(requestUrl, {});
+    }else if (metodo === 'PATCH') {
+      return this.http.patch(requestUrl, cuerpo);
+    }else if (metodo === 'DELETE') {
+      return this.http.delete(requestUrl);
     }
   }
 

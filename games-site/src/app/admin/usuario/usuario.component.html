@@ -1,0 +1,50 @@
+<div class="container mt-5">
+    <ng-container *ngIf="formListo">
+        <h1 class=" fw-light ">Editar Usuario</h1>
+        <hr>
+        <form [formGroup]="usuarioForm " (ngSubmit)="actualizarUsuario() ">
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Nombre: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="nombre " formControlName="nombre">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Apellido: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="apellido " formControlName="apellido">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Username: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="username " formControlName="username">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Correo: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="correo " formControlName="correo">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Fecha de Nacimiento: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="yyyy/mm/dd" formControlName="fechaNacimiento">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mr-3">Actualizar Usuario</button>
+            <button type="button" class="btn btn-secondary mx-3" routerLink="..">Regresar</button>
+        </form>
+    </ng-container>
+</div>

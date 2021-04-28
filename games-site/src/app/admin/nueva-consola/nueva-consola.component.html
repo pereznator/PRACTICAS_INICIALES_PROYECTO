@@ -9,7 +9,9 @@
             <input type="text" class="form-control" placeholder="nombre de la consola" [(ngModel)]="nombreConsola">
         </div>
     </div>
-    <button class="btn btn-primary" (click)="crearConsola()">Crear Nueva Consola</button>
+    <button class="btn btn-primary mr-3" (click)="crearConsola()">Crear Nueva Consola</button>
+    <button class="btn btn-secondary mx-3" routerLink="..">Regresar</button>
+
     <div class="alert alert-warning mt-3" *ngIf="incompleto">
         <p>Debe escribir el nombre de la nueva consola.</p>
     </div>

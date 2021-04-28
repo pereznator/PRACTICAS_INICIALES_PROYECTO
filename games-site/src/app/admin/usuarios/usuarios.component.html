@@ -1,1 +1,38 @@
-<p>usuarios works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-10">
+            <h1 class="fw-light">Lista de Usuarios</h1>
+        </div>
+        <div class="col-sm-2">
+            <div class="d-grid gap-2">
+                <button class="btn btn-secondary" routerLink="..">Regresar</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <table class="table" *ngIf="!cargando && !error">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Username</th>
+                <th>Tipo</th>
+                <th>Correo</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.username}}</td>
+                <td>{{usuario.tipo}}</td>
+                <td>{{usuario.correo}}</td>
+                <td>{{usuario.fecha_nacimiento | date: 'shortDate'}}</td>
+                <td>
+                    <button class="btn btn-outline-primary mr-3" [routerLink]="['/', 'admin', 'usuarios', usuario.id]">Ver</button>
+                    <button class="btn btn-outline-danger mx-3">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

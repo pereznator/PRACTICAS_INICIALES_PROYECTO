@@ -11,6 +11,8 @@ class UserRoutes {
         this.router.post('/register', usersController_1.usersController.createUser);
         this.router.post('/login', usersController_1.usersController.login);
         this.router.get('/:id', usersController_1.usersController.buscarUsuario);
+        this.router.patch('/:id', usersController_1.usersController.actualizarUsuario);
+        this.router.get('/', usersController_1.usersController.obtenerUsuarios);
     }
 }
 exports.userRoutes = new UserRoutes();

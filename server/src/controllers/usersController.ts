@@ -38,6 +38,27 @@ class UsersController {
         }
     }
 
+    public async obtenerUsuarios(req: Request, res: Response): Promise<any> {
+        const respuesta = await pool.query('SELECT * FROM usuario');
+        if (respuesta.length >= 0) {
+            res.json({mensaje: 'Exito', usuarios: respuesta});
+        } else {
+            res.status(404).json({mensaje: 'Error'});
+        }
+    }
+
+    public async actualizarUsuario(req: Request, res: Response): Promise<any> {
+        const { id } = req.params;
+        const respuesta = await pool.query('UPDATE usuario SET ? WHERE id = ?', [req.body, id]);
+        if (respuesta.affectedRows === 1) {
+            res.json({mensaje: 'Exito'});
+        } else {
+            res.json({mensaje: 'Error'});
+        }
+    }
+
+    
+
 }
 
 export const usersController = new UsersController();

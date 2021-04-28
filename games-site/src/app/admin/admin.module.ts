@@ -9,6 +9,9 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { NuevaConsolaComponent } from './nueva-consola/nueva-consola.component';
 import { ConsolasComponent } from './consolas/consolas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { JuegoComponent } from './juego/juego.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 
 
@@ -20,7 +23,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UsuariosComponent,
     ReportesComponent,
     NuevaConsolaComponent,
-    ConsolasComponent],
+    ConsolasComponent,
+    AdminHomeComponent,
+    JuegoComponent,
+    UsuarioComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

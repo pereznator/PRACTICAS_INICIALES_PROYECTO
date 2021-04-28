@@ -25,18 +25,32 @@ class GamesController {
             res.status(404).json({mensaje: 'Error'});
         }
     }
-
+    
     public async getJuegos(req: Request, res: Response): Promise<any> {
         const juegos = await pool.query('SELECT * FROM juego');
         let arreglo: any = [];
-        juegos.forEach( async (juego: any) => {
+        for (const juego of juegos) {
             let jbody = juego;
             const consola = await pool.query('SELECT * FROM consola WHERE id_consola = ?', [juego.id_consola]);
             jbody['consola'] = consola[0];
             arreglo.push(jbody);
-        });
-        console.log(arreglo);
+        }
         res.json({mensaje: 'Exito', juegos: arreglo});
+    }
+    
+    public async updateJuego(req: Request, res: Response): Promise<any> {
+        const { id } = req.params;
+        const respuesta = await pool.query('UPDATE juego SET ? WHERE id_juego = ?', [req.body, id]);
+        console.log(respuesta);
+        if (respuesta.affectedRows === 1){
+            res.json({mensaje: 'Exito'});
+        }else {
+            res.json({mensaje: 'Error'});
+        }
+        /*if (respuesta.length === 1) {
+        } else {
+            res.status(404).json({mensaje: 'Error'});
+        }*/
     }
 
 }

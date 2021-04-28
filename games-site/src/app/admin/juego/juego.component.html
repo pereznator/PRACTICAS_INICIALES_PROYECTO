@@ -1,8 +1,8 @@
 <div class="container mt-3">
-    <h1 class="fw-light">Nuevo Juego</h1>
-    <hr>
     <ng-container *ngIf="!creandoFormulario">
-        <form [formGroup]="juegoForm" class="mx-auto" (ngSubmit)="crearJuego()">
+        <h1 class="fw-light">Editar {{juego.nombre}}</h1>
+        <hr>
+        <form [formGroup]="juegoForm" class="mx-auto" (ngSubmit)="actualizarJuego()">
             <div class="row my-3">
                 <div class="col-md-2">
                     <label class="text-muted my-2">Nombre: </label>
@@ -46,10 +46,10 @@
                     </select>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mr-3">Crear Juego</button>
-            <button type="button" class="btn btn-secondary mx-3" routerLink="..">Regresar</button>
+            <button type="submit" class="btn btn-primary mr-3">Actualizar Juego</button>
+            <button type="button" class="btn btn-secondary mx-3" routerLink="..">Cancelar</button>
             <div class="alert alert-success my-3" *ngIf="juegoCreado">
-                <p>Se ha creado el juego con exito!</p>
+                <p>Se ha actualizado el juego con exito!</p>
             </div>
         </form>
     </ng-container>

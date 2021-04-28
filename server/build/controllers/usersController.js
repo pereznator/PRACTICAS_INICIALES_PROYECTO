@@ -54,5 +54,28 @@ class UsersController {
             }
         });
     }
+    obtenerUsuarios(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const respuesta = yield database_1.default.query('SELECT * FROM usuario');
+            if (respuesta.length >= 0) {
+                res.json({ mensaje: 'Exito', usuarios: respuesta });
+            }
+            else {
+                res.status(404).json({ mensaje: 'Error' });
+            }
+        });
+    }
+    actualizarUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const respuesta = yield database_1.default.query('UPDATE usuario SET ? WHERE id = ?', [req.body, id]);
+            if (respuesta.affectedRows === 1) {
+                res.json({ mensaje: 'Exito' });
+            }
+            else {
+                res.json({ mensaje: 'Error' });
+            }
+        });
+    }
 }
 exports.usersController = new UsersController();

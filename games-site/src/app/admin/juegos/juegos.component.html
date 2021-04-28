@@ -1,7 +1,16 @@
 <div class="container mt-5">
-    <h1 class="fw-light">Lista de Juegos</h1>
+    <div class="row">
+        <div class="col-sm-10">
+            <h1 class="fw-light">Lista de Juegos</h1>
+        </div>
+        <div class="col-sm-2">
+            <div class="d-grid gap-2">
+                <button class="btn btn-secondary" routerLink="..">Regresar</button>
+            </div>
+        </div>
+    </div>
     <hr>
-    <table class="table">
+    <table class="table" *ngIf="!cargando">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -11,13 +20,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>apex</td>
-                <td>ps3</td>
-                <td>2000-09-10</td>
+            <tr *ngFor="let juego of juegos">
+                <td>{{juego.nombre}}</td>
+                <td>{{juego.consola.nombre}}</td>
+                <td>{{juego.fecha | date: 'shortDate'}}</td>
                 <td>
-                    <button class="btn btn-outline-primary">Ver</button>
-                    <button class="btn btn-outline-danger">Eliminar</button>
+                    <button class="btn btn-outline-primary mx-2" [routerLink]="['/', 'admin', 'juegos', juego.id_juego]">Ver</button>
+                    <button class="btn btn-outline-danger mx-2">Eliminar</button>
                 </td>
             </tr>
         </tbody>

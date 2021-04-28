@@ -44,14 +44,30 @@ class GamesController {
         return __awaiter(this, void 0, void 0, function* () {
             const juegos = yield database_1.default.query('SELECT * FROM juego');
             let arreglo = [];
-            juegos.forEach((juego) => __awaiter(this, void 0, void 0, function* () {
+            for (const juego of juegos) {
                 let jbody = juego;
                 const consola = yield database_1.default.query('SELECT * FROM consola WHERE id_consola = ?', [juego.id_consola]);
                 jbody['consola'] = consola[0];
                 arreglo.push(jbody);
-            }));
-            console.log(arreglo);
+            }
             res.json({ mensaje: 'Exito', juegos: arreglo });
+        });
+    }
+    updateJuego(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const respuesta = yield database_1.default.query('UPDATE juego SET ? WHERE id_juego = ?', [req.body, id]);
+            console.log(respuesta);
+            if (respuesta.affectedRows === 1) {
+                res.json({ mensaje: 'Exito' });
+            }
+            else {
+                res.json({ mensaje: 'Error' });
+            }
+            /*if (respuesta.length === 1) {
+            } else {
+                res.status(404).json({mensaje: 'Error'});
+            }*/
         });
     }
 }

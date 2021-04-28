@@ -46,6 +46,14 @@ export class UsuariosService {
     return this.serverService.request('GET', `usuarios/${usuarioId}`);
   }
 
+  actualizarUsuario(usuarioId: string, usuarioCuerpo: any): Observable<any> {
+    return this.serverService.request('PATCH', `usuarios/${usuarioId}`, usuarioCuerpo);
+  }
+
+  getUsuarios(): Observable<any> {
+    return this.serverService.request('GET', 'usuarios');
+  }
+
   guardarUsuario(usuario: any): void {
     this.usuario = usuario;
     localStorage.setItem('idUsuario', this.usuario.id);
