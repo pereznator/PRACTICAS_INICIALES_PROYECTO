@@ -89,5 +89,27 @@ class GamesController {
             }*/
         });
     }
+    mejoresJuegos(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const juegos = yield database_1.default.query("SELECT id_juego, AVG(puntuacion) AS 'promedio' FROM biblioteca GROUP BY id_juego ORDER BY 'promedio' DESC LIMIT 5;");
+            for (const juego of juegos) {
+                const ju = yield database_1.default.query('SELECT * FROM juego WHERE id_juego = ?', [juego.id_juego]);
+                juego['juego'] = ju[0];
+                const consola = yield database_1.default.query('SELECT * FROM consola WHERE id_consola = ?', [ju[0].id_consola]);
+                juego['juego']['consola'] = consola[0];
+            }
+            res.json({ mensaje: 'Exito', juegos: juegos });
+        });
+    }
+    juegosPorFecha(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const juegos = yield database_1.default.query('select * from juego order by fecha asc;');
+            for (const juego of juegos) {
+                const consola = yield database_1.default.query('SELECT * FROM consola WHERE id_consola = ?', [juego.id_consola]);
+                juego['consola'] = consola[0];
+            }
+            res.json({ mensaje: 'Exito', juegos: juegos });
+        });
+    }
 }
 exports.gamesController = new GamesController();

@@ -12,6 +12,8 @@ class GamesRoutes {
 
     config(): void {
         
+        this.router.get('/mejores-juegos', gamesController.mejoresJuegos);
+        this.router.get('/juegos-fecha', gamesController.juegosPorFecha);
         this.router.post('/', gamesController.createJuego);
         this.router.get('/', gamesController.getJuegos);
         this.router.get('/:id', gamesController.getJuego);

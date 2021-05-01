@@ -1,1 +1,108 @@
-<p>reportes works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="fw-light">Reportes</h1>
+        </div>
+        <div class="col-md-2">
+            <div class="d-grid gap-2">
+                <button class="btn btn-secondary" routerLink="..">Regresar</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <button class="nav-link" [class.text-primary]="!masJuegos" [class.active]="masJuegos" (click)="conMasJuegos()">Con más Juegos</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" [class.text-primary]="!masComentarios" [class.active]="masComentarios" (click)="conMasComentarios()">Con más Comentarios</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" [class.text-primary]="!mejoresJuegos" [class.active]="mejoresJuegos" (click)="conMejoresJuegos()">Mejores Juegos</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" [class.text-primary]="!porAnio" [class.active]="porAnio" (click)="conPorAnio()">Juegos por Año</button>
+        </li>
+    </ul>
+
+    <ng-container *ngIf="!cargando">
+
+        <table class="table mt-3" *ngIf="masJuegos">
+            <thead>
+                <tr>
+                    <th>Puesto</th>
+                    <th>Username</th>
+                    <th>Correo</th>
+                    <th>Numero de Juegos en su Biblioteca</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{usuario.usuario.username}}</td>
+                    <td>{{usuario.usuario.correo}}</td>
+                    <td>{{usuario.numero_juegos}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table mt-3" *ngIf="masComentarios">
+            <thead>
+                <tr>
+                    <th>Puesto</th>
+                    <th>Username</th>
+                    <th>Correo</th>
+                    <th>Numero de Comentarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{usuario.usuario.username}}</td>
+                    <td>{{usuario.usuario.correo}}</td>
+                    <td>{{usuario.numero_comentarios}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table" *ngIf="mejoresJuegos">
+            <thead>
+                <tr>
+                    <th>Puesto</th>
+                    <th>Nombre</th>
+                    <th>Consola</th>
+                    <th>Promedio de Puntuacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let juego of juegos; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{juego.juego.nombre}}</td>
+                    <td>{{juego.juego.consola.nombre}}</td>
+                    <td>{{juego.promedio}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table" *ngIf="porAnio">
+            <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Nombre</th>
+                    <th>Consola</th>
+                    <th>Año de publicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let juego of juegos; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{juego.nombre}}</td>
+                    <td>{{juego.consola.nombre}}</td>
+                    <td>{{juego.fecha | date: 'yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+
+
+</div>

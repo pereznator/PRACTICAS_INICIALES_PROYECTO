@@ -67,7 +67,23 @@ class UsersController {
         }
     }
 
+    public async conMasComentarios(req: Request, res: Response): Promise<any> {
+        const usuarios = await pool.query("SELECT id_usuario, COUNT(id_usuario) AS 'numero_comentarios' FROM comentario GROUP BY id_usuario ORDER BY 'numero_comentarios' DESC LIMIT 5;")
+        for (const usu of usuarios) {
+            const usuario = await pool.query('SELECT * FROM usuario WHERE id = ?', [usu.id_usuario]);
+            usu['usuario'] = usuario[0]
+        }
+        res.json({mensaje: 'Exito', usuarios: usuarios});
+    }
     
+    public async conMasJuegos(req: Request, res: Response): Promise<any> {
+        const usuarios = await pool.query("SELECT id_usuario, COUNT(id_usuario) AS 'numero_juegos' FROM biblioteca GROUP BY id_usuario ORDER BY 'numero_juegos' DESC LIMIT 5;")
+        for (const usu of usuarios) {
+            const usuario = await pool.query('SELECT * FROM usuario WHERE id = ?', [usu.id_usuario]);
+            usu['usuario'] = usuario[0]
+        }
+        res.json({mensaje: 'Exito', usuarios: usuarios});
+    }
 
 }
 

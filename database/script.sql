@@ -34,7 +34,7 @@ CREATE TABLE biblioteca (
 	id_biblioteca int(11) not null auto_increment primary key,
     id_usuario int(11) not null,
     id_juego int(11) not null,
-    puntuacion int(10) not null,
+    puntuacion int(1) not null,
     opinion varchar(45) not null,
     foreign key (id_usuario) references usuario(id),
     foreign key (id_juego) references juego(id_juego)

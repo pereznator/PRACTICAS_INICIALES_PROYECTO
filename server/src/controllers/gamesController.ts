@@ -71,6 +71,29 @@ class GamesController {
         }*/
     }
 
+    
+    public async mejoresJuegos(req: Request, res: Response): Promise<any> {
+        const juegos = await pool.query("SELECT id_juego, AVG(puntuacion) AS 'promedio' FROM biblioteca GROUP BY id_juego ORDER BY 'promedio' DESC LIMIT 5;");
+        for (const juego of juegos) {
+            const ju = await pool.query('SELECT * FROM juego WHERE id_juego = ?', [juego.id_juego]);
+            juego['juego'] = ju[0];
+            const consola = await pool.query('SELECT * FROM consola WHERE id_consola = ?', [ju[0].id_consola]);
+            juego['juego']['consola'] = consola[0];
+        }
+        res.json({mensaje: 'Exito', juegos: juegos});
+    }
+
+    public async juegosPorFecha(req: Request, res: Response): Promise<any> {
+        const juegos = await pool.query('select * from juego order by fecha asc;');
+        for (const juego of juegos) {
+            const consola = await pool.query('SELECT * FROM consola WHERE id_consola = ?', [juego.id_consola]);
+            juego['consola'] = consola[0];
+        }
+        res.json({mensaje: 'Exito', juegos: juegos});
+    }
+
+    
+
 }
 
 export const gamesController = new GamesController();

@@ -40,6 +40,7 @@ export class PublicacionesComponent implements OnInit {
           console.log(err);
         });
       });
+      this.cargando = false;
     }, err => {
       console.log(err);
     });

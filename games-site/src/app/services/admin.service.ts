@@ -60,4 +60,20 @@ export class AdminService {
     return this.serverService.request('PATCH', `juegos/${idJuego}`, juegoBody);
   }
 
+  getMasJuegos(): Observable<any> {
+    return this.serverService.request('GET', 'usuarios/mas-juegos');
+  }
+
+  getMasComentarios(): Observable<any> {
+    return this.serverService.request('GET', 'usuarios/mas-comentarios');
+  }
+
+  getMejoresJuegos(): Observable<any> {
+    return this.serverService.request('GET', 'juegos/mejores-juegos');
+  }
+
+  getJuegosPorFecha(): Observable<any> {
+    return this.serverService.request('GET', 'juegos/juegos-fecha');
+  }
+
 }

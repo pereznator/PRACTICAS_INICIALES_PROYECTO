@@ -89,5 +89,25 @@ class UsersController {
             }
         });
     }
+    conMasComentarios(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield database_1.default.query("SELECT id_usuario, COUNT(id_usuario) AS 'numero_comentarios' FROM comentario GROUP BY id_usuario ORDER BY 'numero_comentarios' DESC LIMIT 5;");
+            for (const usu of usuarios) {
+                const usuario = yield database_1.default.query('SELECT * FROM usuario WHERE id = ?', [usu.id_usuario]);
+                usu['usuario'] = usuario[0];
+            }
+            res.json({ mensaje: 'Exito', usuarios: usuarios });
+        });
+    }
+    conMasJuegos(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield database_1.default.query("SELECT id_usuario, COUNT(id_usuario) AS 'numero_juegos' FROM biblioteca GROUP BY id_usuario ORDER BY 'numero_juegos' DESC LIMIT 5;");
+            for (const usu of usuarios) {
+                const usuario = yield database_1.default.query('SELECT * FROM usuario WHERE id = ?', [usu.id_usuario]);
+                usu['usuario'] = usuario[0];
+            }
+            res.json({ mensaje: 'Exito', usuarios: usuarios });
+        });
+    }
 }
 exports.usersController = new UsersController();
