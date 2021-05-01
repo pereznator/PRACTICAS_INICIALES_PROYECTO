@@ -27,8 +27,8 @@ class BibliotecasController {
     }
     getBiblioteca(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const respuesta = yield database_1.default.query('SELECT * FROM biblioteca WHERE id_biblioteca = ?', [id]);
+            const { idBiblioteca } = req.params;
+            const respuesta = yield database_1.default.query('SELECT * FROM biblioteca WHERE id_biblioteca = ?', [idBiblioteca]);
             if (respuesta.length === 1) {
                 res.json({ mensaje: 'Exito', biblioteca: respuesta[0] });
             }
@@ -39,9 +39,37 @@ class BibliotecasController {
     }
     getBibliotecas(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const bibliotecas = yield database_1.default.query('SELECT * FROM biblioteca WHERE id_usuario = ?', [id]);
+            const { idUsuario } = req.params;
+            const bibliotecas = yield database_1.default.query('SELECT * FROM biblioteca WHERE id_usuario = ?', [idUsuario]);
+            for (const bib of bibliotecas) {
+                const juego = yield database_1.default.query('SELECT * FROM juego WHERE id_juego = ?', [bib.id_juego]);
+                bib['juego'] = juego[0];
+            }
             res.json({ mensaje: 'Exito', bibliotecas: bibliotecas });
+        });
+    }
+    checkBiblioteca(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id_usuario, id_juego } = req.body;
+            const respuesta = yield database_1.default.query('SELECT * FROM biblioteca WHERE id_usuario = ? AND id_juego = ?', [id_usuario, id_juego]);
+            if (respuesta.length > 0) {
+                res.json({ mensaje: 'Exito', agregado: true, biblioteca: respuesta[0] });
+            }
+            else {
+                res.json({ mensaje: 'Exito', agregado: false });
+            }
+        });
+    }
+    updateBiblioteca(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idBiblioteca } = req.params;
+            const respuesta = yield database_1.default.query('UPDATE biblioteca SET ? WHERE id_biblioteca = ?', [req.body, idBiblioteca]);
+            if (respuesta.affectedRows === 1) {
+                res.json({ mensaje: 'Exito' });
+            }
+            else {
+                res.json({ mensaje: 'Error' });
+            }
         });
     }
 }

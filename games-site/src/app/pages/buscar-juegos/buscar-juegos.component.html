@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <ng-container *ngIf="!cargando && !error">
-        <h1 class="fw-light">Juegos</h1>
+        <h1 class="fw-light">Resultados de "{{nombre}}"</h1>
         <hr>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col" *ngFor="let juego of juegos">
@@ -20,5 +20,10 @@
                 </div>
             </div>
         </div>
+        <div class="alert alert-danger" *ngIf="!cargando && juegos.length === 0">
+            <h4 class="alert-heading">Sin Resultados</h4>
+            <p>No se han encontrado resultados para "{{nombre}}"</p>
+        </div>
     </ng-container>
+
 </div>

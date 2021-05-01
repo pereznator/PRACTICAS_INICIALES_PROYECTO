@@ -40,6 +40,25 @@ class GamesController {
             }
         });
     }
+    getJuegoPorBusqueda(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let patron = '%';
+            const { busqueda } = req.params;
+            patron = patron + busqueda + '%';
+            const respuesta = yield database_1.default.query('SELECT * FROM juego WHERE nombre LIKE ?;', [patron]);
+            for (const juego of respuesta) {
+                const consola = yield database_1.default.query('SELECT * FROM consola WHERE id_consola = ?', [juego.id_consola]);
+                juego['consola'] = consola[0];
+            }
+            res.json({ mensaje: 'Exito', juegos: respuesta });
+            /*if (respuesta.length === 1) {
+                const consola = await pool.query('SELECT * FROM consola WHERE id_consola = ?', [respuesta[0].id_consola]);
+                respuesta[0]['consola'] = consola[0];
+            } else {
+                res.status(404).json({mensaje: 'Error'});
+            }*/
+        });
+    }
     getJuegos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const juegos = yield database_1.default.query('SELECT * FROM juego');

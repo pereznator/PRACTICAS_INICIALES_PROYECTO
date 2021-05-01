@@ -27,15 +27,37 @@ class PublicacionesController {
     }
     getPublicacionPorJuego(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id_juego } = req.body;
-            const publicaciones = yield database_1.default.query('SELECT * FROM publicacion WHERE id_juego = ?', [id_juego]);
+            const { id } = req.params;
+            const publicaciones = yield database_1.default.query('SELECT * FROM publicacion WHERE id_juego = ?', [id]);
             res.json({ mensaje: 'Exito', publicaciones: publicaciones });
         });
     }
     getPublicacionPorUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id_usuario } = req.body;
-            const publicaciones = yield database_1.default.query('SELECT * FROM publicacion WHERE id_usuario = ?', [id_usuario]);
+            const { id } = req.params;
+            const publicaciones = yield database_1.default.query('SELECT * FROM publicacion WHERE id_usuario = ?', [id]);
+            for (const pub of publicaciones) {
+                const juego = yield database_1.default.query('SELECT * FROM juego WHERE id_juego = ?', [pub.id_juego]);
+                pub['juego'] = juego[0];
+            }
+            res.json({ mensaje: 'Exito', publicaciones: publicaciones });
+        });
+    }
+    getPublicaciones(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const publicaciones = yield database_1.default.query('SELECT * FROM publicacion');
+            for (const pub of publicaciones) {
+                const usu = yield database_1.default.query('SELECT * FROM usuario WHERE id = ?', [pub.id_usuario]);
+                pub['usuario'] = usu[0];
+                const juego = yield database_1.default.query('SELECT * FROM juego WHERE id_juego = ?', [pub.id_juego]);
+                pub['juego'] = juego[0];
+                const comentarios = yield database_1.default.query('SELECT * FROM comentario WHERE id_publicacion = ?', [pub.id_publicacion]);
+                pub['comentarios'] = comentarios;
+                for (const com of comentarios) {
+                    const usuario = yield database_1.default.query('SELECT * FROM usuario WHERE id = ?', com.id_usuario);
+                    com['usuario'] = usuario[0];
+                }
+            }
             res.json({ mensaje: 'Exito', publicaciones: publicaciones });
         });
     }

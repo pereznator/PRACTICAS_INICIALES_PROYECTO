@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-juego',
@@ -18,7 +19,8 @@ export class JuegoComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private adminService: AdminService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private datePipe: DatePipe) {
                 this.getJuego();
               }
 
@@ -50,7 +52,7 @@ export class JuegoComponent implements OnInit {
       nombre: [this.juego.nombre, [Validators.required]],
       descripcion: [this.juego.descripcion, [Validators.required]],
       rutaImagen: [this.juego.imagen, [Validators.required]],
-      fechaLanzamiento: [this.juego.fecha, [Validators.required]],
+      fechaLanzamiento: [this.datePipe.transform(this.juego.fecha, 'yyyy/MM/dd'), [Validators.required]],
       consola: [this.juego.id_consola, [Validators.required]],
     });
     this.creandoFormulario = false;

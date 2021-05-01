@@ -8,9 +8,11 @@ class BibliotecasRoutes {
         this.config();
     }
     config() {
-        this.router.post('/biblioteca', bibliotecasController_1.bibliotecasController.createBiblioteca);
-        this.router.get('/biblioteca/:id', bibliotecasController_1.bibliotecasController.getBiblioteca);
-        this.router.post('/biblioteca/:id', bibliotecasController_1.bibliotecasController.getBibliotecas);
+        this.router.post('/', bibliotecasController_1.bibliotecasController.createBiblioteca);
+        this.router.get('/:idBiblioteca', bibliotecasController_1.bibliotecasController.getBiblioteca);
+        this.router.patch('/:idBiblioteca', bibliotecasController_1.bibliotecasController.updateBiblioteca);
+        this.router.get('/usuario/:idUsuario', bibliotecasController_1.bibliotecasController.getBibliotecas);
+        this.router.post('/usuario', bibliotecasController_1.bibliotecasController.checkBiblioteca);
     }
 }
 const bibliotecasRoutes = new BibliotecasRoutes();

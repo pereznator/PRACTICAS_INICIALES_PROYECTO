@@ -8,9 +8,10 @@ class PublicacionesRoutes {
         this.config();
     }
     config() {
-        this.router.post('/publicaciones', publicacionesController_1.publicacionesController.createPublicacion);
-        this.router.post('/publicaciones/usuario', publicacionesController_1.publicacionesController.getPublicacionPorUsuario);
-        this.router.post('/publicaciones/juego', publicacionesController_1.publicacionesController.getPublicacionPorJuego);
+        this.router.post('/', publicacionesController_1.publicacionesController.createPublicacion);
+        this.router.get('/', publicacionesController_1.publicacionesController.getPublicaciones);
+        this.router.get('/:id', publicacionesController_1.publicacionesController.getPublicacionPorUsuario);
+        this.router.get('/juego/:id', publicacionesController_1.publicacionesController.getPublicacionPorJuego);
     }
 }
 const publicacionesRoutes = new PublicacionesRoutes();

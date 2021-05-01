@@ -9,7 +9,7 @@ class ComentariosRoutes {
 
     config(): void {
         this.router.post('/', comentariosController.createComentario);
-        this.router.post('/:id', comentariosController.getComentarios);
+        this.router.get('/:id', comentariosController.getComentarios);
     }
 
 }

@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <h1 class="fw-light">Nueva Publicación</h1>
+    <hr>
+    <ng-container>
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="text-muted">Comentario: </h3>
+            </div>
+            <div class="col-md-6">
+                <textarea class="form-control" placeholder="escribe algo..." [(ngModel)]="comentario"></textarea>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-3">
+                <h3 class="text-muted">Juego: </h3>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="escribe el titulo de un juego" [(ngModel)]="nombreJuego" (keyup)="getJuegos()" maxlength="250">
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" [disabled]="publiNoValida" (click)="publicar()">Publicar</button>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 mx-auto" *ngIf="!cargandoJuegos && !seleccionado" style="width: 80%;">
+            <div class="col" *ngFor="let juego of juegos">
+                <div class="card h-100">
+                    <img [src]="juego.imagen" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{juego.nombre}}</h5>
+                        <p class="card-text"><small class="text-muted">{{juego.consola.nombre}}</small></p>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-primary" (click)="seleccionar(juego.id_juego, juego.nombre)">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-danger" *ngIf="juegos.length === 0 && !cargandoJuegos">
+            <p>No se han encontrado resultados :(</p>
+        </div>
+        <div class="alert alert-success" *ngIf="publicacionCreada">
+            <p>Se ha publicado con exito!</p>
+        </div>
+
+    </ng-container>
+</div>

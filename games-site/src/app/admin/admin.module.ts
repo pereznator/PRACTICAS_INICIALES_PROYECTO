@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NuevoJuegoComponent } from './nuevo-juego/nuevo-juego.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { JuegosComponent } from './juegos/juegos.component';
@@ -32,6 +32,9 @@ import { UsuarioComponent } from './usuario/usuario.component';
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class AdminModule { }

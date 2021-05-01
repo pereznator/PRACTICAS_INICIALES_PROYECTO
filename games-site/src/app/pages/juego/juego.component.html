@@ -1,1 +1,49 @@
-<p>juego works!</p>
+<div class="container mt-5">
+    <ng-container *ngIf="!cargando && !error">
+        <h1 class="fw-light">{{juego.nombre}} <small class="text-muted">{{juego.consola.nombre}}</small></h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <img [src]="juego.imagen" class="img-fluid" [alt]="juego.nombre">
+                <br><br>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" *ngIf="!existente" [disabled]="validPunteo" (click)="agregarBiblioteca()">Agreagr a Biblioteca</button>
+                    <button class="btn btn-warning" *ngIf="existente" [disabled]="validPunteo" (click)="actualizarBiblioteca()">Actualizar Biblioteca</button>
+                </div>
+                <div class="d-grid gap-2 my-3">
+                    <a class="btn btn-outline-danger" routerLink="..">Regresar</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p>{{juego.descripcion}}</p>
+                <br>
+                <p class="text-muted">{{juego.fecha | date: 'shortDate'}}</p>
+                <br>
+                <ng-container>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Puntuacion:
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" [(ngModel)]="punteo" maxlength="1">
+                                <span class="input-group-text">/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-3">
+                            Opinion:
+                        </div>
+                        <div class="col-md">
+                            <textarea class="form-control" [(ngModel)]="opinion" maxlength="45"></textarea>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="alert alert-success" *ngIf="creado">
+            Se ha guardado en la biblioteca
+        </div>
+    </ng-container>
+</div>

@@ -54,6 +54,10 @@ export class UsuariosService {
     return this.serverService.request('GET', 'usuarios');
   }
 
+  olvidoPassword(cuerpo: any): Observable<any> {
+    return this.serverService.request('POST', 'usuarios/olvido-password', cuerpo);
+  }
+
   guardarUsuario(usuario: any): void {
     this.usuario = usuario;
     localStorage.setItem('idUsuario', this.usuario.id);

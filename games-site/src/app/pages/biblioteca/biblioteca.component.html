@@ -1,1 +1,21 @@
-<p>biblioteca works!</p>
+<div class="container mt-5">
+    <ng-container *ngIf="!cargando && !error">
+        <h1 class="fw-light">Mi Biblioteca</h1>
+        <hr>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" *ngFor="let bib of biblioteca">
+                <div class="card h-100">
+                    <img [src]="bib.juego.imagen" class="card-img-top" [alt]="bib.juego.nombre">
+                    <div class="card-body">
+                        <h5 class="card-title">{{bib.juego.nombre}}</h5>
+                        <p class="card-text">{{bib.opinion}}</p>
+                        <button class="btn btn-success" [routerLink]="['/', 'juegos', bib.juego.id_juego]">Ver mas..</button>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{bib.puntuacion}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

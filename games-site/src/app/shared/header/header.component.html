@@ -10,19 +10,22 @@
                     <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/publicaciones" routerLinkActive="active">Publiciones</a>
+                    <a class="nav-link" routerLink="/publicaciones" routerLinkActive="active">Mis Publiciones</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/biblioteca" routerLinkActive="active">Biblioteca</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" routerLink="/juegos" routerLinkActive="active">Juegos</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" routerLink="/perfil" routerLinkActive="active">Mi Perfil</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar Juego" aria-label="Search">
-                <button class="btn btn-outline-primary" type="submit">Buscar</button>
-            </form>
+            <div class="d-flex">
+                <input class="form-control me-2" type="text" placeholder="Buscar Juego" [(ngModel)]="buscador">
+                <button type="button" [disabled]="buscador.length === 0" class="btn btn-outline-primary" [routerLink]="['/', 'juegos', 'buscar', buscador]">Buscar</button>
+            </div>
         </div>
     </div>
 </nav>

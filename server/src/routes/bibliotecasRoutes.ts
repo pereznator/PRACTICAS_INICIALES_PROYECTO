@@ -8,9 +8,11 @@ class BibliotecasRoutes {
     }
 
     config(): void {
-        this.router.post('/biblioteca', bibliotecasController.createBiblioteca);
-        this.router.get('/biblioteca/:id', bibliotecasController.getBiblioteca);
-        this.router.post('/biblioteca/:id', bibliotecasController.getBibliotecas);
+        this.router.post('/', bibliotecasController.createBiblioteca);
+        this.router.get('/:idBiblioteca', bibliotecasController.getBiblioteca);
+        this.router.patch('/:idBiblioteca', bibliotecasController.updateBiblioteca);
+        this.router.get('/usuario/:idUsuario', bibliotecasController.getBibliotecas);
+        this.router.post('/usuario', bibliotecasController.checkBiblioteca);
     }
 
 }

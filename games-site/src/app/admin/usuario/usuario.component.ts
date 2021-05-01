@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
 import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-usuario',
@@ -18,7 +19,8 @@ export class UsuarioComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private usuariosService: UsuariosService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private datePipe: DatePipe) {
                 this.getUsuario();
               }
 
@@ -43,7 +45,7 @@ export class UsuarioComponent implements OnInit {
       username: [this.usuario.username, [Validators.required, Validators.maxLength(45)]],
       correo: [this.usuario.correo, [Validators.required, Validators.maxLength(45)]],
       biografia: [this.usuario.biografia, [Validators.required, Validators.maxLength(45)]],
-      fechaNacimiento: [this.usuario.fecha_nacimiento, [Validators.required]]
+      fechaNacimiento: [this.datePipe.transform(this.usuario.fecha_nacimiento, 'yyyy/MM/dd'), [Validators.required]]
     });
     this.formListo = true;
   }

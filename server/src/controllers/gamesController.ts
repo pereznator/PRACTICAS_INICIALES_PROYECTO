@@ -25,6 +25,24 @@ class GamesController {
             res.status(404).json({mensaje: 'Error'});
         }
     }
+
+    public async getJuegoPorBusqueda(req: Request, res: Response): Promise<any> {
+        let patron = '%';
+        const { busqueda } = req.params;
+        patron = patron + busqueda + '%';
+        const respuesta = await pool.query('SELECT * FROM juego WHERE nombre LIKE ?;', [patron]);
+        for (const juego of respuesta){
+            const consola = await pool.query('SELECT * FROM consola WHERE id_consola = ?', [juego.id_consola]);
+            juego['consola'] = consola[0];
+        }
+        res.json({mensaje: 'Exito', juegos: respuesta});
+        /*if (respuesta.length === 1) {
+            const consola = await pool.query('SELECT * FROM consola WHERE id_consola = ?', [respuesta[0].id_consola]);
+            respuesta[0]['consola'] = consola[0];
+        } else {
+            res.status(404).json({mensaje: 'Error'});
+        }*/
+    }
     
     public async getJuegos(req: Request, res: Response): Promise<any> {
         const juegos = await pool.query('SELECT * FROM juego');

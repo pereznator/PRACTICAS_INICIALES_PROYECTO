@@ -1,1 +1,58 @@
-<p>perfil works!</p>
+<div class="container mt-5">
+    <ng-container *ngIf="!cargando">
+        <h1 class=" fw-light ">Editar Usuario</h1>
+        <hr>
+        <form [formGroup]="usuarioForm " (ngSubmit)="actualizarUsuario() ">
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Nombre: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="nombre " formControlName="nombre">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Apellido: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="apellido " formControlName="apellido">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Username: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="username " formControlName="username">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Correo: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="correo " formControlName="correo">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Fecha de Nacimiento: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="yyyy/mm/dd" formControlName="fecha">
+                </div>
+            </div>
+            <div class="row my-3 ">
+                <div class="col-md-2 ">
+                    <label class="text-muted ">Biografia: </label>
+                </div>
+                <div class="col-md-6 ">
+                    <input type="text " class="form-control " placeholder="biografia" formControlName="biografia">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mx-3">Actualizar</button>
+            <button type="button" class="btn btn-danger" (click)="cerrarSesion()">Cerrar Sesion</button>
+        </form>
+    </ng-container>
+</div>

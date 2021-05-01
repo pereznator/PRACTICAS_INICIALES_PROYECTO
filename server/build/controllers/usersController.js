@@ -77,5 +77,17 @@ class UsersController {
             }
         });
     }
+    olvidoPassword(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { username, correo } = req.body;
+            const respuesta = yield database_1.default.query('SELECT * FROM usuario WHERE username = ? and correo = ?', [username, correo]);
+            if (respuesta.length === 1) {
+                res.json({ mensaje: 'Exito', valido: true, usuario: respuesta[0] });
+            }
+            else {
+                res.json({ mensaje: 'Exito', valido: false });
+            }
+        });
+    }
 }
 exports.usersController = new UsersController();

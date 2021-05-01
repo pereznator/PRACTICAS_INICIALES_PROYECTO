@@ -29,6 +29,10 @@ class ComentariosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const comentarios = yield database_1.default.query('SELECT * FROM comentario WHERE id_publicacion = ?', [id]);
+            for (const com of comentarios) {
+                const usuario = yield database_1.default.query('SELECT * FROM usuario WHERE id = ?', [com.id_usuario]);
+                com['usuario'] = usuario[0];
+            }
             res.json({ mensaje: 'Exito', comentarios: comentarios });
         });
     }

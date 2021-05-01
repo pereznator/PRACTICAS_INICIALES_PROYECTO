@@ -57,6 +57,16 @@ class UsersController {
         }
     }
 
+    public async olvidoPassword(req: Request, res: Response): Promise<any> {
+        const { username, correo } = req.body;
+        const respuesta = await pool.query('SELECT * FROM usuario WHERE username = ? and correo = ?', [username, correo]);
+        if (respuesta.length === 1) {
+            res.json({mensaje: 'Exito', valido: true, usuario: respuesta[0]});
+        } else {
+            res.json({mensaje: 'Exito', valido: false});
+        }
+    }
+
     
 
 }
